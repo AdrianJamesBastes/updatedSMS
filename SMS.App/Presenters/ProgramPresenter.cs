@@ -59,7 +59,7 @@ namespace SMS.App.Presenters
 
         private void DeleteEvent(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         private void UpdateEvent(object? sender, EventArgs e)
