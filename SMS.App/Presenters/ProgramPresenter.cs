@@ -68,16 +68,28 @@ namespace SMS.App.Presenters
         }
 
         private void UpdateEvent(object? sender, EventArgs e)
-        { 
-            var editProgram = _dbContext.Programs.Find(_programView.ProgramId);
-            editProgram.ProgramName = _programView.ProgramName;
-            editProgram.Description = _programView.Description;
+        {
+            try
+            {
+                var editProgram = _dbContext.Programs.Find(_programView.ProgramId);
+                editProgram.ProgramName = _programView.ProgramName;
+                editProgram.Description = _programView.Description;
 
-            _dbContext.Programs.Update(editProgram);
-            _dbContext.SaveChanges();
+                _dbContext.Programs.Update(editProgram);
+                _dbContext.SaveChanges();
 
-            _programView.SetMessage("Program Updated Successfully!");
+                _programView.SetMessage("Program Updated Successfully!");
+                LoadProgramList();
+            }
+            catch (Exception ex)
+            {
+                _programView.SetMessage($"Error: Blank");
+            }
 
+            finally
+            {
+                LoadProgramList();
+            }
         }
 
         private void ReadEvent(object? sender, EventArgs e)
